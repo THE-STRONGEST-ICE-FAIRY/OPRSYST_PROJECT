@@ -1,3 +1,5 @@
+package RoundRobin;
+
 import java.util.Scanner;
 
 public class Program implements Cloneable{
@@ -20,7 +22,7 @@ public class Program implements Cloneable{
         name = sc.nextLine();
         System.out.print("Program Time In: ");
         timeIn = Integer.parseInt(sc.nextLine());
-        System.out.print("Program Duration: ");
+        System.out.print(".Program Duration: ");
         duration = Integer.parseInt(sc.nextLine());
     }
 
@@ -56,7 +58,6 @@ public class Program implements Cloneable{
     @Override
     public Program clone() {
         try {
-            // TODO: copy mutable state here, so the clone can't change the internals of the original
             return (Program) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
