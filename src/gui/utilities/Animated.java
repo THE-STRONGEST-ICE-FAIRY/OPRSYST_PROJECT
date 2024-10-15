@@ -1,4 +1,4 @@
-package GUI.Utilities;
+package gui.utilities;
 
 import java.awt.*;
 import java.util.LinkedList;

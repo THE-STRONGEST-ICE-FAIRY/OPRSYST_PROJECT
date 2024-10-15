@@ -1,11 +1,11 @@
-package GUI.Sample;
+package gui.scripts;
 
 import javax.swing.*;
 
-public class Sample extends JFrame {
+public class GUI extends JFrame {
     Panel panel;
 
-    Sample() {
+    GUI(Assets assets) {
         setLayout(null);
         setResizable(false);
         setTitle("GUI Sample");
@@ -13,7 +13,7 @@ public class Sample extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        panel = new Panel(getWidth(), getHeight());
+        panel = new Panel(getWidth(), getHeight(), assets);
         panel.setBounds(0, 0, getWidth(), getHeight());
         add(panel);
 
@@ -23,6 +23,7 @@ public class Sample extends JFrame {
     public static void main(String[] args) {
         System.out.println("Wello Horld!\n\n");
 
-        new Sample();
+        Assets assets = new Assets();
+        new GUI(assets);
     }
 }

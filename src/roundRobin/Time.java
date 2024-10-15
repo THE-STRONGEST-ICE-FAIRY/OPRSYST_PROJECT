@@ -1,4 +1,4 @@
-package RoundRobin;
+package roundRobin;
 
 public class Time {
     private Program program;

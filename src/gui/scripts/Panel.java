@@ -1,30 +1,26 @@
-package GUI.Sample;
+package gui.scripts;
 
-import GUI.Utilities.Cursor;
-import GUI.Utilities.Object;
-import GUI.Utilities.Button;
+import gui.utilities.Cursor;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class Panel extends JPanel implements Runnable {
-    int width, height;
     Thread thread;
+    int width, height;
     Cursor cursor;
-    Object fumo;
-    Button fumoButton;
+    MainMenu mainMenu;
 
-    Panel(int width, int height) {
-        this.width = width;
-        this.height = height;
-
+    Panel(int width, int height, Assets assets) {
         thread = new Thread(this);
         thread.start();
 
+        this.width = width;
+        this.height = height;
+
         cursor = new Cursor(this);
 
-        fumo = new Object(new ImageIcon("src/GUI/Assets/fumo.jpeg").getImage(), 200, 200, 100, 100);
-        fumoButton = new Button(new ImageIcon("src/GUI/Assets/fumo.jpeg").getImage(), new ImageIcon("src/GUI/Assets/fumo2.jpeg").getImage(), 500, 500, 100, 100);
+        mainMenu = new MainMenu(width, height, cursor, assets);
     }
 
     public void run() {
@@ -48,8 +44,7 @@ public class Panel extends JPanel implements Runnable {
         super.paintComponent(g);
         Graphics2D gg = (Graphics2D) g;
 
-        fumo.draw(gg);
-        fumoButton.draw(gg);
+        mainMenu.draw(gg);
         cursor.draw(gg);
 
         gg.dispose();

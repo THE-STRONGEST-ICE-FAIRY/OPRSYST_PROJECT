@@ -1,4 +1,4 @@
-package RoundRobin;
+package roundRobin;
 
 import java.util.LinkedList;
 import java.util.Scanner;
