@@ -2,7 +2,7 @@ package gui.utilities;
 
 import java.awt.*;
 
-public class Button extends Object{
+public class Button extends Object {
     private boolean on;
     private boolean lever;
     private final Image offImage;
@@ -15,6 +15,15 @@ public class Button extends Object{
 
         this.offImage = offImage;
         this.onImage = onImage;
+
+        on = false;
+    }
+
+    public Button(int x, int y, int z) {
+        super(null, x, y, 0, 0, z);
+
+        this.offImage = null;
+        this.onImage = null;
 
         on = false;
     }

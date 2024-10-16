@@ -45,11 +45,22 @@ public class About {
     }
 
     public void script() {
+        Button button = buttons.get("MAIN MENU BUTTON");
+        button.setHovering(button.hovering(cursor.getX(), cursor.getY()));
+        button.setImageOnOff(cursor.press && button.hovering(cursor.getX(), cursor.getY()));
 
         if (cursor.click) click();
     }
 
     public void click() {
+        Button button = buttons.get("MAIN MENU BUTTON");
+        if (button.hovering(cursor.getX(), cursor.getY())) {
+            button.setOnOff();
+            System.out.println("CLICK");
+
+            mainMenu.visible = true;
+            visible = false;
+        }
 
         cursor.clickCD = 5;
         cursor.click = false;

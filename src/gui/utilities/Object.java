@@ -16,6 +16,15 @@ public class Object {
         this.z = 0;
     }
 
+    public Object(int x, int y, int z) {
+        this.image = null;
+        this.x = x;
+        this.y = y;
+        this.w = 0;
+        this.h = 0;
+        this.z = z;
+    }
+
     public Object(Image image, int x, int y, int w, int h, int z) {
         this.image = image;
         this.x = x;
