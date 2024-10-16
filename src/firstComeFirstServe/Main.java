@@ -1,9 +1,9 @@
-package roundRobin;
+package firstComeFirstServe;
 
 public class Main {
 
     Main() {
-        new RoundRobin();
+        new FirstComeFirstServe();
     }
 
     public static void main(String[] args) {
