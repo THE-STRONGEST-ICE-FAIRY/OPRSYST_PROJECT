@@ -10,6 +10,9 @@ public class Panel extends JPanel implements Runnable {
     int width, height;
     Cursor cursor;
     MainMenu mainMenu;
+    RoundRobin roundRobin;
+    FirstComeFirstServe firstComeFirstServe;
+    About about;
 
     Panel(int width, int height, Assets assets) {
         thread = new Thread(this);
@@ -21,6 +24,10 @@ public class Panel extends JPanel implements Runnable {
         cursor = new Cursor(this);
 
         mainMenu = new MainMenu(width, height, cursor, assets);
+        roundRobin = new RoundRobin(width, height, cursor, assets, mainMenu);
+        firstComeFirstServe = new FirstComeFirstServe(width, height, cursor, assets, mainMenu);
+        about = new About(width, height, cursor, assets, mainMenu);
+        mainMenu.setPages(roundRobin, firstComeFirstServe, about);
     }
 
     public void run() {
@@ -45,6 +52,10 @@ public class Panel extends JPanel implements Runnable {
         Graphics2D gg = (Graphics2D) g;
 
         mainMenu.draw(gg);
+        roundRobin.draw(gg);
+        firstComeFirstServe.draw(gg);
+        about.draw(gg);
+
         cursor.draw(gg);
 
         gg.dispose();

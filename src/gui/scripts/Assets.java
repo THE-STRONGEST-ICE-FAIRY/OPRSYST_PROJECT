@@ -17,22 +17,57 @@ public class Assets {
 
     public void mainMenu(int width, int height) {
         String x = "MAIN MENU";
-        {
-            objects.put(x, new HashMap<>());
-            buttons.put(x, new HashMap<>());
 
-            objects.get(x).put("BACKGROUND", new Object(
-                    new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
-                    0, 0, width, height, 0
-            ));
+        objects.put(x, new HashMap<>());
+        buttons.put(x, new HashMap<>());
 
-            buttons.get(x).put("BUTTON", new Button(
-                    new ImageIcon("src/gui/assets/fumo2.jpeg").getImage(),
-                    new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
-                    100, 300, 100, 100, 1
-            ));
-            buttons.get(x).get("BUTTON").setHoverImage(new ImageIcon("src/gui/assets/white55.png").getImage());
-            buttons.get(x).get("BUTTON").setLever(true);
-        }
+        objects.get(x).put("BACKGROUND", new Object(
+                new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
+                0, 0, width, height, 0
+        ));
+
+        buttons.get(x).put("BUTTON", new Button(
+                new ImageIcon("src/gui/assets/fumo2.jpeg").getImage(),
+                new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
+                100, 300, 100, 100, 1
+        ));
+        buttons.get(x).get("BUTTON").setHoverImage(new ImageIcon("src/gui/assets/white55.png").getImage());
+        buttons.get(x).get("BUTTON").setLever(true);
+    }
+
+    public void about(int width, int height) {
+        String x = "ABOUT";
+
+        objects.put(x, new HashMap<>());
+        buttons.put(x, new HashMap<>());
+
+        objects.get(x).put("BACKGROUND", new Object(
+                new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
+                0, 0, width, height, 0
+        ));
+    }
+
+    public void roundRobin(int width, int height) {
+        String x = "ROUND ROBIN";
+
+        objects.put(x, new HashMap<>());
+        buttons.put(x, new HashMap<>());
+
+        objects.get(x).put("BACKGROUND", new Object(
+                new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
+                0, 0, width, height, 0
+        ));
+    }
+
+    public void firstComeFirstServe(int width, int height) {
+        String x = "FIRST COME FIRST SERVE";
+
+        objects.put(x, new HashMap<>());
+        buttons.put(x, new HashMap<>());
+
+        objects.get(x).put("BACKGROUND", new Object(
+                new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
+                0, 0, width, height, 0
+        ));
     }
 }

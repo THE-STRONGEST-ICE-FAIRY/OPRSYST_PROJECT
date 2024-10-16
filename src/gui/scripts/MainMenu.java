@@ -16,6 +16,9 @@ public class MainMenu {
     HashMap<String, Object> objects;
     HashMap<String, Button> buttons;
     LinkedList<Object> display;
+    RoundRobin roundRobin;
+    FirstComeFirstServe firstComeFirstServe;
+    About about;
 
     MainMenu(int width, int height, Cursor cursor, Assets assets) {
         visible = true;
@@ -32,6 +35,12 @@ public class MainMenu {
         display.addAll(objects.values());
         display.addAll(buttons.values());
         display.sort(Comparator.comparingDouble(Object::getZ));
+    }
+
+    public void setPages(RoundRobin roundRobin, FirstComeFirstServe firstComeFirstServe, About about) {
+        this.roundRobin = roundRobin;
+        this.firstComeFirstServe = firstComeFirstServe;
+        this.about = about;
     }
 
     public void draw(Graphics2D gg) {
