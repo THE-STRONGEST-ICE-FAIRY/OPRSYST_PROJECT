@@ -6,11 +6,14 @@ public class Program implements Cloneable{
     private String name;
     private int timeIn;
     private int duration;
+    private int timeOut;
+    private int timeQueued;
 
     Program(String name, int timeIn, int duration) {
         this.name = name;
         this.timeIn = timeIn;
         this.duration = duration;
+        extraInit();
     }
 
     Program(Scanner sc) {
@@ -24,6 +27,12 @@ public class Program implements Cloneable{
         timeIn = Integer.parseInt(sc.nextLine());
         System.out.print(".Program Duration: ");
         duration = Integer.parseInt(sc.nextLine());
+        extraInit();
+    }
+
+    private void extraInit() {
+        timeOut = -1;
+        timeQueued = 0;
     }
 
     public String getName(int limit) {
@@ -53,6 +62,26 @@ public class Program implements Cloneable{
 
     public int getTimeIn() {
         return timeIn;
+    }
+
+    public void setTimeOut(int timeOut) {
+        this.timeOut = timeOut;
+    }
+
+    public int getTimeOut() {
+        return timeOut;
+    }
+
+    public void addTimeQueued() {
+        this.timeQueued++;
+    }
+
+    public void setTimeQueued(int timeQueued) {
+        this.timeQueued = timeQueued;
+    }
+
+    public int getTimeQueued() {
+        return timeQueued;
     }
 
     @Override

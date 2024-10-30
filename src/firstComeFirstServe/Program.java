@@ -6,11 +6,14 @@ public class Program implements Cloneable{
     private String name;
     private int timeIn;
     private int duration;
+    private int timeOut;
+    private int timeQueued;
 
     Program(String name, int timeIn, int duration) {
         this.name = name;
         this.timeIn = timeIn;
         this.duration = duration;
+        extraInit();
     }
 
     Program(Scanner sc) {
@@ -24,6 +27,12 @@ public class Program implements Cloneable{
         timeIn = Integer.parseInt(sc.nextLine());
         System.out.print(".Program Duration: ");
         duration = Integer.parseInt(sc.nextLine());
+        extraInit();
+    }
+
+    private void extraInit() {
+        timeOut = -1;
+        timeQueued = 0;
     }
 
     public String getName(int limit) {
@@ -55,10 +64,30 @@ public class Program implements Cloneable{
         return timeIn;
     }
 
+    public void setTimeOut(int timeOut) {
+        this.timeOut = timeOut;
+    }
+
+    public int getTimeOut() {
+        return timeOut;
+    }
+
+    public void addTimeQueued() {
+        this.timeQueued++;
+    }
+
+    public void setTimeQueued(int timeQueued) {
+        this.timeQueued = timeQueued;
+    }
+
+    public int getTimeQueued() {
+        return timeQueued;
+    }
+
     @Override
-    public Program clone() {
+    public firstComeFirstServe.Program clone() {
         try {
-            return (Program) super.clone();
+            return (firstComeFirstServe.Program) super.clone();
         } catch (CloneNotSupportedException e) {
             throw new AssertionError();
         }
