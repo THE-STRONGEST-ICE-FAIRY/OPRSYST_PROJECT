@@ -4,10 +4,12 @@ import gui.utilities.Button;
 import gui.utilities.Cursor;
 import gui.utilities.Object;
 
+import javax.swing.*;
 import java.awt.*;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Objects;
 
 public class Gantt {
     boolean visible;
@@ -15,6 +17,7 @@ public class Gantt {
     Cursor cursor;
     HashMap<String, Object> objects;
     HashMap<String, Button> buttons;
+    HashMap<String, LinkedList<Object>> objectGroups;
     LinkedList<Object> display;
     Table table;
 
@@ -29,6 +32,7 @@ public class Gantt {
         assets.gantt(width, height);
         objects = assets.objects.get("GANTT");
         buttons = assets.buttons.get("GANTT");
+        objectGroups = assets.objectGroups.get("GANTT");
 
         display = new LinkedList<>();
         display.addAll(objects.values());
@@ -42,6 +46,7 @@ public class Gantt {
         script();
 
         for (Object o : display) o.draw(gg);
+//        for (Object o : objectGroups.get("RECTANGLES")) o.draw(gg);
     }
 
     public void script() {
@@ -64,5 +69,27 @@ public class Gantt {
 
         cursor.clickCD = 5;
         cursor.click = false;
+    }
+
+    roundRobin.Gantt gantt;
+    public void startRoundRobin() {
+        gantt = new roundRobin.Gantt(table.programs, table.timeQuantum);
+
+        LinkedList<Object> rectangles = new LinkedList<>();
+        for (int i = 0; i < gantt.time.size(); i++) {
+            if (gantt.time.get(i).getProgram() != null) {
+                rectangles.add(new Object(
+                        new ImageIcon("src/gui/assets/rectangles/rect (" + ((programIndex(gantt.time.get(i).getProgram().getName()) % 10) + 1) + ").png").getImage(),
+                        i * 30 + 5 * i, height/2, 30, 100, 1)
+                );
+            }
+        }
+
+        display.addAll(rectangles);
+    }
+
+    private int programIndex(String s) {
+        for (int i = 0; i < table.programs.size(); i++) if (Objects.equals(table.programs.get(i).getName(), s)) return i;
+        return -1;
     }
 }

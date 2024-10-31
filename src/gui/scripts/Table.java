@@ -3,6 +3,7 @@ package gui.scripts;
 import gui.utilities.Button;
 import gui.utilities.Cursor;
 import gui.utilities.Object;
+import roundRobin.Program;
 
 import java.awt.*;
 import java.util.Comparator;
@@ -18,6 +19,8 @@ public class Table {
     LinkedList<Object> display;
     MainMenu mainMenu;
     Gantt gantt;
+    int timeQuantum;
+    LinkedList<Program> programs;
 
     Table(int width, int height, Cursor cursor, Assets assets, MainMenu mainMenu) {
         visible = false;
@@ -27,6 +30,7 @@ public class Table {
         this.cursor = cursor;
         this.mainMenu = mainMenu;
         gantt = new Gantt(width, height, cursor, assets, this);
+        timeQuantum = 3;
 
         assets.table(width, height);
         objects = assets.objects.get("TABLE");
@@ -36,6 +40,13 @@ public class Table {
         display.addAll(objects.values());
         display.addAll(buttons.values());
         display.sort(Comparator.comparingDouble(Object::getZ));
+
+        programs = new LinkedList<>();
+        programs.add(new Program("Program 1", 0, 5));
+        programs.add(new Program("Program 2", 2, 9));
+        programs.add(new Program("Program 3", 6, 1));
+        programs.add(new Program("Program 4", 12, 2));
+        programs.add(new Program("Program 5", 1, 10));
     }
 
     public void draw(Graphics2D gg) {
@@ -74,6 +85,7 @@ public class Table {
             button.setOnOff();
             System.out.println("CLICK");
 
+            gantt.startRoundRobin();
             gantt.visible = true;
             visible = false;
         }

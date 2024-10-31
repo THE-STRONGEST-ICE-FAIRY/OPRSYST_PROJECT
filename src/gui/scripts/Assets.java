@@ -7,14 +7,17 @@ import gui.utilities.Text;
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Assets {
     public HashMap<String, HashMap<String, Object>> objects;
     public HashMap<String, HashMap<String, Button>> buttons;
+    public HashMap<String, HashMap<String, LinkedList<Object>>> objectGroups;
 
     Assets() {
         objects = new HashMap<>();
         buttons = new HashMap<>();
+        objectGroups = new HashMap<>();
     }
 
     public void mainMenu(int width, int height) {
@@ -130,6 +133,7 @@ public class Assets {
 
         objects.put(x, new HashMap<>());
         buttons.put(x, new HashMap<>());
+        objectGroups.put(x, new HashMap<>());
 
         objects.get(x).put("BACKGROUND", new Object(
                 new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
@@ -147,5 +151,14 @@ public class Assets {
                 600, 300, 100, 100, 1
         ));
         buttons.get(x).get("TABLE BUTTON").setHoverImage(new ImageIcon("src/gui/assets/white55.png").getImage());
+
+        objectGroups.get(x).put("RECTANGLES", new LinkedList<>());
+        for (int i = 1; i <= 10; i++) {
+            objectGroups.get(x).get("RECTANGLES").add(
+                    new Object(
+                            new ImageIcon("src/gui/assets/rectangles/rect (" + i + ").png").getImage(),
+                            (i - 1) * 50 + 10 * (i - 1), 0, 50, 100, 0)
+            );
+        }
     }
 }

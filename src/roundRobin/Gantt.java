@@ -5,12 +5,12 @@ import java.util.LinkedList;
 import java.util.Objects;
 
 public class Gantt {
-    LinkedList<Program> programList, programListCopy;
-    LinkedList<Program> queue;
-    LinkedList<Time> time;
+    public LinkedList<Program> programList, programListCopy;
+    public LinkedList<Program> queue;
+    public LinkedList<Time> time;
     int timeAllocated, timeAllocatedMax;
 
-    Gantt(LinkedList<Program> programList, int timeAllocated) {
+    public Gantt(LinkedList<Program> programList, int timeAllocated) {
         this.programList = new LinkedList<>();
         this.programListCopy = new LinkedList<>();
         for (Program p : programList) {

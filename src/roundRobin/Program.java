@@ -9,7 +9,7 @@ public class Program implements Cloneable{
     private int timeOut;
     private int timeQueued;
 
-    Program(String name, int timeIn, int duration) {
+    public Program(String name, int timeIn, int duration) {
         this.name = name;
         this.timeIn = timeIn;
         this.duration = duration;
