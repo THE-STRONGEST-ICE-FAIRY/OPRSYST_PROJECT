@@ -9,26 +9,26 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-public class FirstComeFirstServe {
+public class Gantt {
     boolean visible;
     int width, height;
     Cursor cursor;
     HashMap<String, Object> objects;
     HashMap<String, Button> buttons;
     LinkedList<Object> display;
-    MainMenu mainMenu;
+    Table table;
 
-    FirstComeFirstServe(int width, int height, Cursor cursor, Assets assets, MainMenu mainMenu) {
+    Gantt(int width, int height, Cursor cursor, Assets assets, Table table) {
         visible = false;
         this.width = width;
         this.height = height;
 
         this.cursor = cursor;
-        this.mainMenu = mainMenu;
+        this.table = table;
 
-        assets.firstComeFirstServe(width, height);
-        objects = assets.objects.get("FIRST COME FIRST SERVE");
-        buttons = assets.buttons.get("FIRST COME FIRST SERVE");
+        assets.gantt(width, height);
+        objects = assets.objects.get("GANTT");
+        buttons = assets.buttons.get("GANTT");
 
         display = new LinkedList<>();
         display.addAll(objects.values());
@@ -45,11 +45,22 @@ public class FirstComeFirstServe {
     }
 
     public void script() {
+        Button button = buttons.get("TABLE BUTTON");
+        button.setHovering(button.hovering(cursor.getX(), cursor.getY()));
+        button.setImageOnOff(cursor.press && button.hovering(cursor.getX(), cursor.getY()));
 
         if (cursor.click) click();
     }
 
     public void click() {
+        Button button = buttons.get("TABLE BUTTON");
+        if (button.hovering(cursor.getX(), cursor.getY())) {
+            button.setOnOff();
+            System.out.println("CLICK");
+
+            table.visible = true;
+            visible = false;
+        }
 
         cursor.clickCD = 5;
         cursor.click = false;

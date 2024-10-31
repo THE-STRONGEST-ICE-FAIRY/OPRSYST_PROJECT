@@ -13,7 +13,7 @@ public class GUI extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
-        panel = new Panel(getWidth(), getHeight(), assets);
+        panel = new Panel(getWidth(), getHeight(), assets, this);
         panel.setBounds(0, 0, getWidth(), getHeight());
         add(panel);
 

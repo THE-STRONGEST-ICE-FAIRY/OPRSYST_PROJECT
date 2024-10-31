@@ -1,9 +1,9 @@
 package gui.scripts;
 
-import gui.utilities.Cursor;
+import gui.utilities.*;
 import gui.utilities.Button;
+import gui.utilities.Cursor;
 import gui.utilities.Object;
-import gui.utilities.Text;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,17 +16,18 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class MainMenu {
+    JFrame frame;
     boolean visible;
     int width, height;
     Cursor cursor;
     HashMap<String, Object> objects;
     HashMap<String, Button> buttons;
     LinkedList<Object> display;
-    RoundRobin roundRobin;
-    FirstComeFirstServe firstComeFirstServe;
+    Table table;
     About about;
 
-    MainMenu(int width, int height, Cursor cursor, Assets assets) {
+    MainMenu(int width, int height, Cursor cursor, Assets assets, JFrame frame) {
+        this.frame = frame;
         visible = true;
         this.width = width;
         this.height = height;
@@ -43,9 +44,8 @@ public class MainMenu {
         display.sort(Comparator.comparingDouble(Object::getZ));
     }
 
-    public void setPages(RoundRobin roundRobin, FirstComeFirstServe firstComeFirstServe, About about) {
-        this.roundRobin = roundRobin;
-        this.firstComeFirstServe = firstComeFirstServe;
+    public void setPages(Table table, About about) {
+        this.table = table;
         this.about = about;
     }
 
@@ -67,6 +67,14 @@ public class MainMenu {
         button.setImageOnOff(cursor.press && button.hovering(cursor.getX(), cursor.getY()));
 
         button = buttons.get("ABOUT BUTTON");
+        button.setHovering(button.hovering(cursor.getX(), cursor.getY()));
+        button.setImageOnOff(cursor.press && button.hovering(cursor.getX(), cursor.getY()));
+
+        button = buttons.get("EXIT BUTTON");
+        button.setHovering(button.hovering(cursor.getX(), cursor.getY()));
+        button.setImageOnOff(cursor.press && button.hovering(cursor.getX(), cursor.getY()));
+
+        button = buttons.get("TABLE BUTTON");
         button.setHovering(button.hovering(cursor.getX(), cursor.getY()));
         button.setImageOnOff(cursor.press && button.hovering(cursor.getX(), cursor.getY()));
 
@@ -108,7 +116,7 @@ public class MainMenu {
             });
             dialog.setVisible(true);
 
-            if (optionPane.getValue() != null && (int) optionPane.getValue() == 0) {
+            if (optionPane.getValue() != null && (int) optionPane.getValue() == 0 && CheckStringForInt.canConvertToInt(textArea.getText())) {
                 Text t = (Text) objects.get("TEXT");
                 t.setText(textArea.getText());
             }
@@ -120,6 +128,35 @@ public class MainMenu {
             System.out.println("CLICK");
 
             about.visible = true;
+            visible = false;
+        }
+
+        button = buttons.get("EXIT BUTTON");
+        if (button.hovering(cursor.getX(), cursor.getY())) {
+            button.setOnOff();
+            System.out.println("CLICK");
+
+            cursor.clickCD = 5;
+            cursor.click = false;
+
+            int choice = JOptionPane.showConfirmDialog(
+                    frame,
+                    "Are you sure you want to exit?",
+                    "Exit Confirmation",
+                    JOptionPane.YES_NO_OPTION
+            );
+
+            if (choice == JOptionPane.YES_OPTION) {
+                System.exit(0); // Exit the application
+            }
+        }
+
+        button = buttons.get("TABLE BUTTON");
+        if (button.hovering(cursor.getX(), cursor.getY())) {
+            button.setOnOff();
+            System.out.println("CLICK");
+
+            table.visible = true;
             visible = false;
         }
 

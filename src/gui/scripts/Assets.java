@@ -54,6 +54,20 @@ public class Assets {
                 300, 300, 100, 100, 1
         ));
         buttons.get(x).get("TEXT BUTTON").setHoverImage(new ImageIcon("src/gui/assets/white55.png").getImage());
+
+        buttons.get(x).put("EXIT BUTTON", new Button(
+                new ImageIcon("src/gui/assets/fumo2.jpeg").getImage(),
+                new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
+                600, 500, 100, 100, 1
+        ));
+        buttons.get(x).get("EXIT BUTTON").setHoverImage(new ImageIcon("src/gui/assets/white55.png").getImage());
+
+        buttons.get(x).put("TABLE BUTTON", new Button(
+                new ImageIcon("src/gui/assets/fumo2.jpeg").getImage(),
+                new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
+                600, 100, 100, 100, 1
+        ));
+        buttons.get(x).get("TABLE BUTTON").setHoverImage(new ImageIcon("src/gui/assets/white55.png").getImage());
     }
 
     public void about(int width, int height) {
@@ -80,8 +94,8 @@ public class Assets {
         buttons.get(x).get("MAIN MENU BUTTON").setHoverImage(new ImageIcon("src/gui/assets/white55.png").getImage());
     }
 
-    public void roundRobin(int width, int height) {
-        String x = "ROUND ROBIN";
+    public void table(int width, int height) {
+        String x = "TABLE";
 
         objects.put(x, new HashMap<>());
         buttons.put(x, new HashMap<>());
@@ -90,10 +104,29 @@ public class Assets {
                 new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
                 0, 0, width, height, 0
         ));
+
+        objects.get(x).put("TEXT", new Text(
+                0, 50, 1,
+                "TABLE", 50, Color.BLACK
+        ));
+
+        buttons.get(x).put("GANTT BUTTON", new Button(
+                new ImageIcon("src/gui/assets/fumo2.jpeg").getImage(),
+                new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
+                600, 100, 100, 100, 1
+        ));
+        buttons.get(x).get("GANTT BUTTON").setHoverImage(new ImageIcon("src/gui/assets/white55.png").getImage());
+
+        buttons.get(x).put("MAIN MENU BUTTON", new Button(
+                new ImageIcon("src/gui/assets/fumo2.jpeg").getImage(),
+                new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
+                600, 300, 100, 100, 1
+        ));
+        buttons.get(x).get("MAIN MENU BUTTON").setHoverImage(new ImageIcon("src/gui/assets/white55.png").getImage());
     }
 
-    public void firstComeFirstServe(int width, int height) {
-        String x = "FIRST COME FIRST SERVE";
+    public void gantt(int width, int height) {
+        String x = "GANTT";
 
         objects.put(x, new HashMap<>());
         buttons.put(x, new HashMap<>());
@@ -102,5 +135,17 @@ public class Assets {
                 new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
                 0, 0, width, height, 0
         ));
+
+        objects.get(x).put("TEXT", new Text(
+                0, 50, 1,
+                "GANTT", 50, Color.BLACK
+        ));
+
+        buttons.get(x).put("TABLE BUTTON", new Button(
+                new ImageIcon("src/gui/assets/fumo2.jpeg").getImage(),
+                new ImageIcon("src/gui/assets/fumo.jpeg").getImage(),
+                600, 300, 100, 100, 1
+        ));
+        buttons.get(x).get("TABLE BUTTON").setHoverImage(new ImageIcon("src/gui/assets/white55.png").getImage());
     }
 }
