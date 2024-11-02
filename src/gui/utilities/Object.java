@@ -6,6 +6,7 @@ public class Object {
     protected Image image;
     protected int x, y, w, h;
     int z;
+    public boolean visible;
 
     public Object() {
         this.image = null;
@@ -14,6 +15,7 @@ public class Object {
         this.w = 0;
         this.h = 0;
         this.z = 0;
+        visible = true;
     }
 
     public Object(int x, int y, int z) {
@@ -23,6 +25,7 @@ public class Object {
         this.w = 0;
         this.h = 0;
         this.z = z;
+        visible = true;
     }
 
     public Object(Image image, int x, int y, int w, int h, int z) {
@@ -32,9 +35,11 @@ public class Object {
         this.w = w;
         this.h = h;
         this.z = z;
+        visible = true;
     }
 
     public void draw(Graphics2D gg) {
+        if (!visible) return;
         gg.drawImage(image, x, y, w, h, null);
     }
 

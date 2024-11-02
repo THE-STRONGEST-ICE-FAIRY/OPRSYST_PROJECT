@@ -64,6 +64,10 @@ public class Program implements Cloneable{
         return timeIn;
     }
 
+    public void setTimeIn(int timeIn) {
+        this.timeIn = timeIn;
+    }
+
     public void setTimeOut(int timeOut) {
         this.timeOut = timeOut;
     }

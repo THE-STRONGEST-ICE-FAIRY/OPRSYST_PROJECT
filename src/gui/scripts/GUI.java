@@ -8,8 +8,8 @@ public class GUI extends JFrame {
     GUI(Assets assets) {
         setLayout(null);
         setResizable(false);
-        setTitle("GUI Sample");
-        setSize(1000, 700);
+        setTitle("FCFS and RR Process Scheduling System");
+        setSize(1000 + 16, 700 + 39);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 

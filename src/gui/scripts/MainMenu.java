@@ -58,11 +58,7 @@ public class MainMenu {
     }
 
     public void script() {
-        Button button = buttons.get("BUTTON");
-        button.setHovering(button.hovering(cursor.getX(), cursor.getY()));
-        button.setImageOnOff(cursor.press && button.hovering(cursor.getX(), cursor.getY()));
-
-        button = buttons.get("TEXT BUTTON");
+        Button button = buttons.get("TEXT BUTTON");
         button.setHovering(button.hovering(cursor.getX(), cursor.getY()));
         button.setImageOnOff(cursor.press && button.hovering(cursor.getX(), cursor.getY()));
 
@@ -78,17 +74,21 @@ public class MainMenu {
         button.setHovering(button.hovering(cursor.getX(), cursor.getY()));
         button.setImageOnOff(cursor.press && button.hovering(cursor.getX(), cursor.getY()));
 
+        button = buttons.get("FOLDER FCFS");
+        Button button2 = buttons.get("TEXT FCFS");
+        button.setHovering(button2.hovering(cursor.getX(), cursor.getY()));
+        button.setImageOnOff(cursor.press && button2.hovering(cursor.getX(), cursor.getY()));
+
+        button = buttons.get("FOLDER RR");
+        button2 = buttons.get("TEXT RR");
+        button.setHovering(button2.hovering(cursor.getX(), cursor.getY()));
+        button.setImageOnOff(cursor.press && button2.hovering(cursor.getX(), cursor.getY()));
+
         if (cursor.click) click();
     }
 
     public void click() {
-        Button button = buttons.get("BUTTON");
-        if (button.hovering(cursor.getX(), cursor.getY())) {
-            button.setOnOff();
-            System.out.println("CLICK");
-        }
-
-        button = buttons.get("TEXT BUTTON");
+        Button button = buttons.get("TEXT BUTTON");
         if (button.hovering(cursor.getX(), cursor.getY())) {
             button.setOnOff();
             System.out.println("CLICK");
@@ -142,7 +142,7 @@ public class MainMenu {
             int choice = JOptionPane.showConfirmDialog(
                     frame,
                     "Are you sure you want to exit?",
-                    "Exit Confirmation",
+                    "",
                     JOptionPane.YES_NO_OPTION
             );
 
@@ -151,12 +151,25 @@ public class MainMenu {
             }
         }
 
-        button = buttons.get("TABLE BUTTON");
+        button = buttons.get("TEXT FCFS");
         if (button.hovering(cursor.getX(), cursor.getY())) {
             button.setOnOff();
             System.out.println("CLICK");
 
+            table.updateTableFCFS();
             table.visible = true;
+            table.fcfs = true;
+            visible = false;
+        }
+
+        button = buttons.get("TEXT RR");
+        if (button.hovering(cursor.getX(), cursor.getY())) {
+            button.setOnOff();
+            System.out.println("CLICK");
+
+            table.updateTableRR();
+            table.visible = true;
+            table.fcfs = false;
             visible = false;
         }
 

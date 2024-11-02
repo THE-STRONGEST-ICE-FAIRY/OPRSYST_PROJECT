@@ -16,6 +16,7 @@ public class Text extends Object {
     }
 
     public void draw(Graphics2D gg) {
+        if (!visible) return;
         gg.setColor(color);
         gg.setFont(new Font("Arial", Font.PLAIN, size));
         gg.drawString(text, x, y);

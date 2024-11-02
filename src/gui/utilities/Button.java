@@ -3,12 +3,12 @@ package gui.utilities;
 import java.awt.*;
 
 public class Button extends Object {
-    private boolean on;
+    public boolean on;
     private boolean lever;
     private final Image offImage;
     private final Image onImage;
     private Object hoverImage;
-    boolean hovering;
+    boolean hovering, replaceHover;
 
     public Button(Image offImage, Image onImage, int x, int y, int w, int h, int z) {
         super(offImage, x, y, w, h, z);
@@ -29,16 +29,37 @@ public class Button extends Object {
     }
 
     public void draw(Graphics2D gg) {
-        gg.drawImage(image, x, y, w, h, null);
-        if (hoverImage != null && hovering) hoverImage.draw(gg);
+        if (!visible) return;
+        if (replaceHover) {
+            if (hoverImage != null && hovering) hoverImage.draw(gg);
+            else gg.drawImage(image, x, y, w, h, null);
+        }
+        else {
+            gg.drawImage(image, x, y, w, h, null);
+            if (hoverImage != null && hovering) hoverImage.draw(gg);
+        }
     }
 
-    public void setHoverImage(Image hoverImage) {
+    public void setHoverImage(Image hoverImage, boolean replaceHover) {
         this.hoverImage = new Object(hoverImage, x, y, w, h, z);
+        this.replaceHover = replaceHover;
+    }
+
+    @Override
+    public void gotoXY(int x, int y) {
+        super.gotoXY(x, y);
+        hoverImage.gotoXY(x, y);
     }
 
     public void setOnOff() {
         on = !on;
+        if (!lever) return;
+        if (on) setImage(onImage);
+        else setImage(offImage);
+    }
+
+    public void setOnOff(boolean set) {
+        on = set;
         if (!lever) return;
         if (on) setImage(onImage);
         else setImage(offImage);
